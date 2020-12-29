@@ -29,7 +29,3 @@ jobs:
       - name: Login to docker registry
         run: |
         echo ${{ secrets.DOCKER_REG_PASSWORD }} | docker login -u ${{ secrets.DOCKER_REG_USERNAME }} --password-stdin
-        pwd
-        ls 
-
-      
