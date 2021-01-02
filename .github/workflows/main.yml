@@ -36,6 +36,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Set node environment
         uses: actions/setup-node@v2
         with:
           node-version: 14
@@ -50,5 +52,6 @@ jobs:
         run: echo ${{ secrets.DOCKER_REG_PASSWORD }} | docker login -u ${{ secrets.DOCKER_REG_USERNAME }} --password-stdin 
 
       - name: Build image
-        run: docker build -t ${DOCKER_IMAGE_NAME}:latest .
-        run: docker push ${DOCKER_IMAGE_NAME}:latest
+        run: |
+          docker build -t ${DOCKER_IMAGE_NAME}:latest .
+          docker push ${DOCKER_IMAGE_NAME}:latest
