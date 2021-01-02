@@ -41,10 +41,11 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           
-      - name: Install and build
-        run: |
-          npm install
-          npm run build
+      - name: Install dependence
+        run: npm install
+
+      - name: Build app
+        run: npm run build
 
       # Runs a single command using the runners shell
       - name: Login to docker registry
