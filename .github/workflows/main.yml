@@ -2,6 +2,8 @@
 
 name: CI
 
+env: 
+  DOCKER_IMAGE_NAME: ruidocs/react-start
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -12,6 +14,15 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      name:
+        description: 'person'
+        required: true
+        default: 'ruims'
+      home:
+        description: 'location'
+        required: false
+        default: 'beijing'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,11 +36,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v2
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+        run: |
+          npm install
+          npm run build
 
       # Runs a single command using the runners shell
       - name: Login to docker registry
         run: echo ${{ secrets.DOCKER_REG_PASSWORD }} | docker login -u ${{ secrets.DOCKER_REG_USERNAME }} --password-stdin 
 
-      - name: ls
-        run: pwd && ls
-
+      - name: Build image
+        run: docker build -t ${DOCKER_IMAGE_NAME}:latest .
+        run: docker push ${DOCKER_IMAGE_NAME}:latest
