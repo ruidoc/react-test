@@ -3,7 +3,8 @@
 name: CI
 
 env: 
-  DOCKER_IMAGE_NAME: ruidocs/react-start
+  DOCKER_REG_USERNAME: ruidocs
+  DOCKER_IMAGE_URL: ruidocs/react-test
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -49,9 +50,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Login to docker registry
-        run: echo ${{ secrets.DOCKER_REG_PASSWORD }} | docker login -u ${{ secrets.DOCKER_REG_USERNAME }} --password-stdin 
+        run: echo ${{ secrets.DOCKER_REG_PASSWORD }} | docker login -u ${DOCKER_REG_USERNAME} --password-stdin 
 
       - name: Build image
         run: |
-          docker build -t ${DOCKER_IMAGE_NAME}:latest .
-          docker push ${DOCKER_IMAGE_NAME}:latest
+          docker build -t ${DOCKER_IMAGE_URL}:latest .
+          docker push ${DOCKER_IMAGE_URL}:latest
