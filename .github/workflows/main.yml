@@ -4,7 +4,7 @@ name: CI
 
 env: 
   REG_USERNAME: ruidocs
-  IMAGE_NAME: react-test
+  IMAGE_NAME: ${REG_USERNAME}/react-test
   IMAGE_TAG: latest
 
 # Controls when the action will run. 
@@ -53,5 +53,5 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ${REG_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG} .
-          docker push ${REG_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}
+          docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+          docker push ${IMAGE_NAME}:${IMAGE_TAG}
