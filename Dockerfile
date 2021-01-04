@@ -10,3 +10,4 @@ COPY build /var/www
 VOLUME /var/www
 
 EXPOSE 80
+
