@@ -50,6 +50,10 @@ jobs:
       - name: Build app
         run: yarn run build
 
+      - name: Set Docker Config
+        run: |
+          echo -e "{\"insecure-registries\":[\"${REG_USERNAME}\"]}" > /etc/docker/daemon.json
+
       - name: Build image
         run: |
           docker build -t ${REG_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG} .
