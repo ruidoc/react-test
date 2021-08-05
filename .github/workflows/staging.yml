@@ -52,6 +52,7 @@ jobs:
 
       - name: Set Docker Config
         run: |
+          su root
           echo -e "{\"insecure-registries\":[\"${REG_USERNAME}\"]}" > /etc/docker/daemon.json
 
       - name: Build image
