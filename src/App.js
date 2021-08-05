@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          这是部署的第一步：测试触发action
+          看到这个界面，说明 docker 部署成功了！！
         </p>
         <a
           className="App-link"
