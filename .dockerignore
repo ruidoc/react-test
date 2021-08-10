@@ -2,7 +2,6 @@
 /src
 /scripts
 /public
-/config
 .github
 .git
 .DS_Store
