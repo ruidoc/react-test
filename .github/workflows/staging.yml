@@ -60,4 +60,4 @@ jobs:
           docker push ${REG_HOST}/${IMAGE_NAME}:${IMAGE_TAG}
 
       - name: Dispatch update
-        run: curl -d '{"cur_image":"${IMAGE_NAME}:${IMAGE_TAG}"}' -H "Content-Type:application/json" -X POST ${{ secrets.WEBHOOK_TRIGGER }}
+        run: curl -d "{\"cur_image\":\"${IMAGE_NAME}:${IMAGE_TAG}\"}" -H "Content-Type:application/json" -X POST ${{ secrets.WEBHOOK_TRIGGER }}
