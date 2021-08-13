@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>看到这个界面，说明 docker 部署成功了！！ 版本：1.0.2</p>
+        <p>看到这个界面，说明 docker 部署成功了！！ 版本：1.0.3</p>
         <a
           className="App-link"
           href="https://reactjs.org"
